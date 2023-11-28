@@ -28,15 +28,15 @@ def insert_data_into_mysql(cpu_percentage, memory_percentage, disk_percentage):
         insert_query = "INSERT INTO Registro (valorRegistro, dataRegistro, fkComponente) VALUES (%s, %s, %s)"
 
         # Inserir percentual de uso da CPU
-        data_cpu = (cpu_percentage, datetime.now(), 1)  # ID do componente da CPU é 1
+        data_cpu = (cpu_percentage, datetime.now(), 3)  # ID do componente da CPU é 1
         cursor.execute(insert_query, data_cpu)
 
         # Inserir percentual de uso da memória
-        data_memory = (memory_percentage, datetime.now(), 5)  # ID do componente de memória é 5
+        data_memory = (memory_percentage, datetime.now(), 4)  # ID do componente de memória é 5
         cursor.execute(insert_query, data_memory)
 
         # Inserir percentual de uso do disco
-        data_disk = (disk_percentage, datetime.now(), 10)  # ID do componente de disco é 10 
+        data_disk = (disk_percentage, datetime.now(), 6)  # ID do componente de disco é 10 
         cursor.execute(insert_query, data_disk)
 
         connection.commit()
