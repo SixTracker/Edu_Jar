@@ -13,7 +13,17 @@ object ScriptPython {
 import psutil
 import mysql.connector
 from datetime import datetime
+import pyodbc
 
+def sql_server_connection(server, database, username, password):
+    connection_string = f'DRIVER={{SQL Server}};SERVER={'54.146.1.25'};DATABASE={'sixtracker'};UID={'sa'};PWD={'Sixtracker@'}'
+    try:
+        connection = pyodbc.connect(connection_string)
+        return connection
+    except pyodbc.Error as ex:
+        print(f"Erro ao conectar ao banco de dados: {ex}")
+        sys.exit()
+        
 # Funções para capturar percentuais de uso da CPU, memória e disco
 def get_cpu_usage():
     return psutil.cpu_percent(interval=1)
@@ -39,15 +49,15 @@ def insert_data_into_mysql(cpu_percentage, memory_percentage, disk_percentage):
         insert_query = "INSERT INTO Registro (valorRegistro, dataRegistro, fkComponente) VALUES (%s, %s, %s)"
 
         # Inserir percentual de uso da CPU
-        data_cpu = (cpu_percentage, datetime.now(), ${fkCPU})  # ID do componente da CPU é 1
+        data_cpu = (cpu_percentage, datetime.now(), ${fkCPU})  # ID do componente da CPU é 363
         cursor.execute(insert_query, data_cpu)
 
         # Inserir percentual de uso da memória
-        data_memory = (memory_percentage, datetime.now(), ${fkRAM})  # ID do componente de memória é 5
+        data_memory = (memory_percentage, datetime.now(), ${fkRAM})  # ID do componente de memória é 366
         cursor.execute(insert_query, data_memory)
 
         # Inserir percentual de uso do disco
-        data_disk = (disk_percentage, datetime.now(), ${fkDISC})  # ID do componente de disco é 10 
+        data_disk = (disk_percentage, datetime.now(), ${fkDISC})  # ID do componente de disco é 375
         cursor.execute(insert_query, data_disk)
 
         connection.commit()

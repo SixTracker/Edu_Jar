@@ -99,6 +99,11 @@
     </build>
 
     <dependencies>
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>12.4.1.jre11</version>
+        </dependency>
         <!-- Adiciona o JDBC ao projeto, permitindo conexões com banco -->
         <dependency>
             <groupId>org.springframework</groupId>
